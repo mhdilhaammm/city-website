@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GABUT DIKIT NGODING</title>
-
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,6 +12,8 @@
       rel="stylesheet" />
     <!-- css about -->
     <link rel="stylesheet" href="css/about.css" />
+    <!-- feather icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
   </head>
   <body>
     <nav class="navbar">
@@ -88,6 +89,21 @@
       </div>
     </section>
 
+    <section class="city" id="city">
+      <span>CITY<hr></span>
+      <h2>SEVERAL PICTURE OF BEUTIFUL CITIES IN THE WORLD</h2>
+
+      <div class="row">
+        <button id="prev" onclick="prevImage()"><i data-feather="arrow-left"></i></button>
+          <div class="slide">
+            <img src="img/barcelona.jpg" alt="Barcelona" class="active">
+            <img src="img/seoul.jpg" alt="Seoul">
+            <img src="img/tokyo.jpg" alt="Tokyo">
+          </div>
+        <button id="next" onclick="nextImage()"><i data-feather="arrow-right"></i></button>
+      </div>
+    </section>
+
     <footer>
       <div class="content-footer">
         <span>
@@ -95,7 +111,50 @@
         </span>
       </div>
     </footer>
-  </body>
-
+  
     <script src="js/main.js"></script>
+    <!-- feather icons -->
+     <script>
+      feather.replace();
+    </script>
+    <script>
+      // Ambil semua elemen gambar dari dalam div dengan class "slide"
+      const images = document.querySelectorAll('.slide img');
+      let currentImageIndex = 0; // Indeks gambar yang sedang ditampilkan
+
+      // Fungsi untuk menampilkan gambar berdasarkan indeks
+      function showImage(index) {
+        // Sembunyikan semua gambar
+        images.forEach((img, i) => {
+          img.classList.remove('active');
+          img.style.opacity = '0'; // Atur opacity jadi 0 untuk sembunyikan
+        });
+
+        // Tampilkan gambar berdasarkan indeks yang diberikan
+        images[index].classList.add('active');
+        images[index].style.opacity = '1'; // Atur opacity jadi 1 untuk tampilkan
+      }
+
+      // Fungsi untuk tombol "Next"
+      function nextImage() {
+        currentImageIndex = (currentImageIndex + 1) % images.length; // Loop kembali ke gambar pertama jika sudah di gambar terakhir
+        showImage(currentImageIndex);
+      }
+
+      // Fungsi untuk tombol "Previous"
+      function prevImage() {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length; // Loop ke gambar terakhir jika sebelumnya di gambar pertama
+        showImage(currentImageIndex);
+      }
+
+      // Event listener untuk tombol "Next"
+      document.getElementById('next').addEventListener('click', nextImage);
+
+      // Event listener untuk tombol "Previous"
+      document.getElementById('prev').addEventListener('click', prevImage);
+
+      // Tampilkan gambar pertama saat halaman pertama kali dimuat
+      showImage(currentImageIndex);
+    </script>
+  </body>
 </html>

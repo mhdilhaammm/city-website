@@ -207,6 +207,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   grid-gap: 1.5rem;
+  margin-bottom: 2em;
 }
 .card .row-card .card-content {
   background-color: #31363f;
@@ -229,6 +230,80 @@ body {
   height: 250px;
   border-radius: 50%;
   margin: 20px 0;
+}
+/* FOR SLIDE CITY */
+.city {
+  padding: 6rem 7% 1.4rem;
+  background-color: #31363f;
+}
+.city .row {
+  align-items: center;
+  display: flex;
+  justify-content: center; /* Agar gambar berada di tengah */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  height: 500px; /* Tentukan tinggi kontainer agar gambar teratur */
+}
+.city h2 {
+  text-align: left;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  color: white;
+}
+.city span {
+  text-align: left;
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  color: grey;
+}
+.city span hr {
+  transform: translateY(-8px);
+  display: inline-block;
+  margin-left: 10px;
+  border: 0;
+  height: 2px;
+  width: 100px;
+  background-color: grey;
+}
+.city .slide {
+  position: relative;
+  width: 100%; /* Gambar menyesuaikan lebar kontainer */
+  height: 100%; /* Gambar menyesuaikan tinggi kontainer */
+  z-index: 0;
+  display: flex;
+  justify-content: center; /* Gambar di tengah */
+  align-items: center; /* Vertikal tengah */
+}
+
+.city .slide img {
+  width: auto; /* Otomatis mengikuti lebar gambar */
+  height: 100%; /* Gambar memenuhi tinggi kontainer tanpa distorsi */
+  opacity: 0; /* Gambar disembunyikan sebagai default */
+  position: absolute; /* Agar gambar berada di posisi yang sama */
+  transition: opacity 0.5s ease-in-out; /* Transisi lembut saat mengganti gambar */
+  filter: hue-rotate(10deg) brightness(0.77);
+}
+
+.city .slide img.active {
+  opacity: 1; /* Gambar aktif muncul */
+}
+
+#prev,
+#next {
+  background-color: transparent;
+  padding: 2rem 5rem;
+  color: white;
+  cursor: pointer;
+}
+
+#prev:hover,
+#next:hover {
+  background-color: rgb(126, 126, 126);
 }
 
 /* FOR FOOTER */
